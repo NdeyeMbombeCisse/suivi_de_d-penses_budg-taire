@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Habibi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <fieldset>
+        <h1>Inscription</h1>
+        <form action="" id="formulaire">
+            <div class="inputs">
+                <label for="prenom">Prenom</label>
+                <input type="text" id="prenom" name="prenom">
+                <span id="prenomErreur"></span>
+            </div>
+            <div class="inputs">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <span id="emailErreur"></span>
+            </div>
+            <div class="inputs">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <span id="passwordErreur"></span>
+            </div>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </fieldset>
+
+
+    <div class="login" >
+    <fieldset>
+        <h1>Connexion</h1>
+        <form action="" id="formulaire">
+            <div class="inputs">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <span id="emailErreur"></span>
+            </div>
+            <div class="inputs">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <span id="passwordErreur"></span>
+            </div>
+            <button type="submit">Se connecter</button>
+        </form>
+    </fieldset>
+
+    </div>
+    
+</body>
+<script type="module" src="script.js"></script>
+</html>
