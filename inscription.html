@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <fieldset>
+    <fieldset id="container">
         <h1>Inscription</h1>
         <form action="" id="formulaire">
             <div class="inputs">
@@ -33,22 +33,24 @@
     </fieldset>
 
 
-    <div class="login" >
+    <div id="login" >
     <fieldset>
         <h1>Connexion</h1>
-        <form action="" id="formulaire">
+        <form action="" id="loginform">
             <div class="inputs">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
+                <label for="email2">Email</label>
+                <input type="email" id="email2" name="email2">
                 <span id="emailErreur"></span>
             </div>
             <div class="inputs">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password">
+                <label for="password2">Password</label>
+                <input type="password" id="password2" name="password2">
                 <span id="passwordErreur"></span>
             </div>
             <button type="submit">Se connecter</button>
         </form>
+        <button  id="logout">Se deconnecter</button>
+
     </fieldset>
 
     </div>
