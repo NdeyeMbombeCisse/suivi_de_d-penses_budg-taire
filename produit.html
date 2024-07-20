@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-group">
+        <label for="date">Choisissez une date :</label>
+        <input type="date" id="dateproduit" class="form-control">
+        <span id="dateproduitErreur"></span>
+    </div>
+    <fieldset id="moncontainer">
+        <h1>Ajouter un produit</h1>
+        <form action="" id="produitformulaire">
+            <div class="inputs">
+                <label for="nomproduit">Nom </label>
+                <input type="text" id="nomproduit" name="nomproduit">
+                <span id="nomproduitErreur"></span>
+            </div>
+            <div class="inputs">
+                <label for="prixproduit">Prix</label>
+                <input type="number" id="prixproduit" name="prixproduit">
+                <span id="prixproduitErreur"></span>
+            </div>
+            <div class="inputs">
+                <label for="quantiteproduit">Quantite</label>
+                <input type="text" id="quantiteproduit" name="quantiteproduit">
+                <span id="quantiteproduitErreur"></span>
+            </div>
+
+            <input type="hidden" id="produitId">
+            <button type="submit">Ajouter</button>
+        </form>
+    </fieldset>
+    <div id="produitsList"></div>
+    
+    <script type="module" src="produit.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

@@ -9,12 +9,14 @@ fieldset{
 
     
 }
+
+
 .login{
     display: none;
 }
 
 body{
-    background-image: url(img4.png);
+    background-image: url(backround.png);
     background-size: cover; /* Adapte l'image pour qu'elle soit entièrement visible */
     background-position: center;
     max-width: 100%;
@@ -65,6 +67,60 @@ label{
     margin-left: 34px;
     margin-top: 30px;
 }
+/* style pour l'affichage */
+
+#produitList p{
+    font-size: 25px;
+    font-family: "Habibi", sans-serif;
+    color: white;
+    margin-top: 30px;
+    margin-left: 25px;
+}
+
+
+
+#icon{
+    margin-left: 830px;
+}
+#icon i{
+    margin-left: 20px;
+    margin-top: 20px;
+
+}
+.produit-item {
+    width: 979px;
+    height: 230px;
+    background-color: #D39247;
+    margin-left: 160px;
+    border-radius: 17px;
+}
+
+/* Styles pour les paragraphes dans chaque produit */
+.produit-item p {
+    margin: 5px 0;
+    font-size: 18px; /* Ajuster la taille de la police pour les éléments de produit */
+    color: #000; /* Couleur du texte pour les éléments de produit */
+}
+.produit-actions {
+    margin-top: -650px;
+    margin-left: 830px;
+
+  }
+  
+  .produit-actions i {
+    /* cursor: pointer; */
+    margin-left: 20px;
+
+  }
+  
+  .produit-actions .edit-icon {
+    color: #fffbfb;
+  }
+  
+  .produit-actions .delete-icon {
+    color: #ffffff;
+  }
+
 
 form button{
     width: 540px;
@@ -84,7 +140,7 @@ form button{
     fieldset {
         width: 90%; /* Ajuste la largeur pour les petits écrans */
         height: auto; /* Permet à la hauteur de s'adapter au contenu */
-        margin-left: 5%; /* Centre le fieldset horizontalement */
+        margin-left: 3%; /* Centre le fieldset horizontalement */
         margin-top: 150px; /* Réduit la marge supérieure */
     }
 
@@ -113,8 +169,25 @@ form button{
     }
 
     body{
-        background-image: none;
+        /* background-image: none; */
         background-position: center;
         overflow-x: hidden;
     }
+
+    .produit-item {
+        width: 360px;
+        height: 220px;
+        background-color: #D39247;
+        margin-left: 25px;
+        border-radius: 17px;
+    }
+
+    .produit-actions {
+        margin-top: -380px;
+        margin-left: 270px;
+    
+      }
+      h2{
+        display: none;
+      }
 }
