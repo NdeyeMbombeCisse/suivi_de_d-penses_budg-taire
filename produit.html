@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Habibi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="corps">
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="menu-burger" id="menu-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="produit.html">Planifier</a></li>
+                    <li><a href="afficheproduit.html">Mes courses</a></li>
+                    <li><button>Deconnexion</button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div class="form-group">
         <label for="date">Choisissez une date :</label>
         <input type="date" id="dateproduit" class="form-control">

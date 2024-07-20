@@ -1,3 +1,79 @@
+/* style du menu */
+
+
+header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 83px;
+    background-color: #D39247;
+    padding: 0 20px;
+}
+
+nav {
+    width: 100%;
+}
+#moncontainer{
+    margin-left: 600px;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.menu-burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-burger span {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+.corps{
+    background-image: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin-right: 200px;
+    margin-left: auto; /* Aligne les liens à droite */
+}
+
+.nav-links a,
+.nav-links button {
+    text-decoration: none;
+    color: white;
+    font-family: "Habibi", sans-serif;
+    font-size: 25px;
+    margin-left: 40px;
+}
+
+nav button {
+    border-radius: 50px;
+    width: 170px;
+    height: 45px;
+    border: 1px solid white;
+    font-size: 19px;
+    color: #D39247;
+    background: none;
+    cursor: pointer;
+}
+
+
+.vide.hidden{
+    display: block; /* Afficher lorsque actif */
+}
+
+
 fieldset{
     width: 626px;
     height: 584px;
@@ -5,9 +81,7 @@ fieldset{
     border-radius: 15px;
     margin-left: 500px;
     margin-top: 150px;
-    border: 1px solid #f8f8f8;
-
-    
+    border: 1px solid #f8f8f8;  
 }
 
 
@@ -45,6 +119,9 @@ h1{
     border: 1px solid #D39247;
     margin-top: 40px;
 
+}
+.hidden{
+    display: none;
 }
 
 form{
@@ -87,12 +164,37 @@ label{
     margin-top: 20px;
 
 }
+#dateFiltre{
+    /* margin-left: 700px; */
+    border-radius: 30px;
+    width: 320px;
+    height: 60px;
+    margin-top: 50px;
+}
 .produit-item {
-    width: 979px;
+    width: 1000px;
     height: 230px;
     background-color: #D39247;
-    margin-left: 160px;
+    margin-left: 300px;
     border-radius: 17px;
+    margin-top: 30px;
+}
+.form-group{
+    margin-left: 1200px;
+
+
+}
+
+h2{
+    margin-left: 300px;
+}
+/* style de la page ajouter */
+#dateproduit{
+    border-radius: 30px;
+    width: 320px;
+    height: 60px;
+    margin-top: 50px;
+
 }
 
 /* Styles pour les paragraphes dans chaque produit */
@@ -102,14 +204,41 @@ label{
     color: #000; /* Couleur du texte pour les éléments de produit */
 }
 .produit-actions {
-    margin-top: -650px;
-    margin-left: 830px;
+    margin-left: 830px; 
+    display: flex;
+    margin-top: -170px;
 
   }
+  .statut{
+    /* display: none; */
+    background-color: green;
+    width: 131px;
+    height: 43px;
+    text-align: center;
+    color: white;
+    font-family: habibi;
+    font-size: 25px;
+    margin-left: 800px;
+    margin-top: 88px;
+
+   } 
+
+  .produit-actions button{
+    background-color: #D39247;
+    border: none;
+    margin-top: -8px;
+  }
+  .produit-actions button i{
+    width: 30px;
+    height: 30px;
+  }
+
   
   .produit-actions i {
     /* cursor: pointer; */
     margin-left: 20px;
+   
+
 
   }
   
@@ -190,4 +319,124 @@ form button{
       h2{
         display: none;
       }
+
+      /* style du menu */
+
+     .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #D39247;
+        position: absolute;
+        top: 83px;
+        left: 0;
+        padding: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%; 
+        /* text-align: center; */
+         margin: 10px 0;
+    }
+
+   
+
+    .menu-burger {
+        display: flex;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute; 
+         top: 83px; 
+        left: 0;
+        background-color: #D39247;
+        z-index: 1;  
+    } 
+     
+    /* Afficher les liens lorsque le menu burger est activé */
+    .menu-burger.active + .nav-links {
+        display: flex;
+    }
+
+    #dateFiltre{
+        /* display: none; */
+        border-radius: 30px;
+        width: 220px;
+        height: 50px;
+        margin-top: 50px;
+    }
+
+    .produit-actions button{
+        background-color: #D39247;
+        border: none;
+        margin-top: -8px;
+      }
+
+      .produit-actions {
+        margin-left: 230px;
+        display: flex;
+        margin-top: -170px;
+    
+      }
+
+      .statut{
+        /* display: none; */
+        background-color: green;
+        width: 81px;
+        height: 40px;
+        text-align: center;
+        color: white;
+        font-family: habibi;
+        font-size: 20px;
+        margin-left: 260px;
+        margin-top: 88px;
+    
+       } 
+
+       .form-group{
+        margin-left: 150px;
+    
+    
+    }
+
+    .form-group label{
+        display: none;
+    
+    
+    }
+
+    h2{
+        text-align: center;
+    }
+
+    #moncontainer{
+        margin-left: 10px;
+        margin-top: 40px;
+        width: 345px;
+    }
+
+    #dateproduit{
+        border-radius: 30px;
+        width: 220px;
+        height: 40px;
+        margin-top: 20px;
+    
+    }
+
+   
+      
+    
+    
+    
 }

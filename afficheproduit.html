@@ -11,16 +11,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="corps">
 
-    <h2>Liste des Produits</h2>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="menu-burger" id="menu-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="produit.html">Planifier</a></li>
+                    <li><a href="afficheproduit.html">Mes courses</a></li>
+                    <li><button>Deconnexion</button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="form-group">
+        <label for="dateFiltre">Filtrer par date :</label>
+        <input type="date" id="dateFiltre" class="form-control" placeholder="filtrer par date">
+    </div>
+
     <div id="produitList">
+        <h2>Liste des Produits</h2>
+
         
         <div id="produitListUl">
+
             <!-- Les produits seront ajoutés ici -->
         </div>
+
     </div>
+    <div class="vide hidden">Aucun produit trouvé pour cette date.</div>
     <script type="module" src="afficher.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+  
 </body>
 </html>

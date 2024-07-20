@@ -1,103 +1,4 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-// import { getDatabase,ref, set  } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 
-
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCQGsCrIRQUumN2OPoY6EbX2CtI1HToHW8",
-//     authDomain: "gestion-de-depenses-f22f2.firebaseapp.com",
-//     projectId: "gestion-de-depenses-f22f2",
-//     storageBucket: "gestion-de-depenses-f22f2.appspot.com",
-//     messagingSenderId: "166722032540",
-//     appId: "1:166722032540:web:0a82311ffd9fdcc83eee59",
-//     measurementId: "G-9Z1YSG37CT",
-//     databaseURL: "https://gestion-de-depenses-f22f2-default-rtdb.firebaseio.com/",
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const db = getDatabase(app);
-
-// const produitform = document.getElementById('produitformulaire');
-
-// produitform.addEventListener('submit' ,(e) =>{
-//     e.preventDefault();
-//    let valid = true;
-//     const nomregex = /^[a-zA-Z\s]+$/;
-//     const quantiteregex = /^[a-zA-Z0-9\s]+$/
-
-//      const nomproduit = document.getElementById('nomproduit').value.trim();
-//    const  prixproduit = document.getElementById('prixproduit').value.trim()
-//     const quantiteproduit = document.getElementById('quantiteproduit').value.trim();
-//     if(nomproduit ===""){
-//        const nomproduitErreur = document.getElementById('nomproduitErreur');
-//         nomproduitErreur.innerHTML = "le nom du produit ne dois pas etre vide";
-//         nomproduitErreur.style.color = 'red';
-//         valid = false;
-        
-//     } else if(!nomregex.test(nomproduit)){
-//         const nomproduitErreur = document.getElementById('nomproduitErreur');
-//         nomproduitErreur.innerHTML = "le nom ne dois pas contenir de caractere speciale ni de chiffre";
-//         nomproduitErreur.style.color = 'red';
-//         valid = false;
-//     }
-
-//     if(prixproduit ===""){
-//         const prixproduitErreur = document.getElementById('prixproduitErreur');
-//         prixproduitErreur.innerHTML = "le  prix ne dois pas etre vide";
-//         prixproduitErreur.style.color = 'red';
-
-//     } 
-
-//     if(quantiteproduit === ""){
-//         const quantiteproduitErreur = document.getElementById('quantiteproduitErreur');
-//         quantiteproduitErreur.innerHTML = "la quantite ne dois pas etre vide";
-//         quantiteproduitErreur.style.color = 'red';
-//     } else if(!quantiteregex.test(quantiteproduit)){
-//         const quantiteproduitErreur = document.getElementById('quantiteproduitErreur');
-//         quantiteproduitErreur.innerHTML = "la quantite ne dois pas contenir de caracte special";
-//         quantiteproduitErreur.style.color = 'red';
-
-//     }
-
-//     if (!valid) {
-//         return; // Arrêter le traitement si les données ne sont pas valides
-//       }
-    
-
-//     const newproduitRef = ref(db, 'Produits/' +Date.now());
-//     set(newproduitRef,{
-//         nom: nomproduit ,
-//         prix:  prixproduit,
-//         quantite:   quantiteproduit,
-
-//     })
-//     .then(() => { 
-//         Swal.fire({
-//             title: "Produit ajouté avec succès!",
-//             icon: 'success',
-//             showClass: {
-//               popup: 'animate__animated animate__fadeInUp animate__faster'
-//             },
-//             hideClass: {
-//               popup: 'animate__animated animate__fadeOutDown animate__faster'
-//             }
-//           });
-    
-//           // Réinitialiser le formulaire
-//           produitform.reset();
-
-    
-//         // Afficher un message de succès avec SweetAlert2
-       
-//       }).catch((error) => {
-//         console.error('Erreur lors de l\'ajout du produit:', error);
-//         alert('Erreur lors de l\'ajout du produit.');
-//     });
-
-//    // Fonction pour récupérer et afficher les produits
-
-
-// })
 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
@@ -119,6 +20,14 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const menuBurger = document.getElementById("menu-burger");
+    const navLinks = document.getElementById("nav-links");
+  
+    menuBurger.addEventListener("click", function() {
+      navLinks.classList.toggle("active");
+      menuBurger.classList.toggle("active");
+    });
     const produitform = document.getElementById('produitformulaire');
     const dateproduitInput = document.getElementById('dateproduit');
     let selectedDate = null;
