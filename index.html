@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,12 +29,13 @@
                 <span id="passwordErreur"></span>
             </div>
             <button type="submit">S'inscrire</button>
+            <p>Vous avez déjà un compte? <a href="#" id="showLogin">Se connecter</a></p>
         </form>
     </fieldset>
 
 
-    <div id="login" >
-    <fieldset>
+    <div id="login" style="display: none;" >
+    <fieldset id="" >
         <h1>Connexion</h1>
         <form action="" id="loginform">
             <div class="inputs">
@@ -49,7 +50,7 @@
             </div>
             <button type="submit">Se connecter</button>
         </form>
-        <button  id="logout">Se deconnecter</button>
+        <p>Vous avez déjà un compte? <a href="#" id="showSignup">S'inscrire</a></p>
 
     </fieldset>
 
@@ -57,42 +58,8 @@
     
 </body>
 <script type="module" src="script.js"></script>
-</html> -->
+<script type="module" src="afficher.js"></script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter ou Modifier un Produit</title>
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-</head>
-</head>
-<body>
-    <fieldset id="container">
-        <h1 id="form-title">Ajouter un Produit</h1>
-        <form id="produitformulaire">
-            <input type="hidden" id="produitId" name="produitId">
-            <div class="inputs">
-                <label for="nomproduit">Nom du Produit</label>
-                <input type="text" id="nomproduit" name="nomproduit">
-                <span id="nomproduitErreur"></span>
-            </div>
-            <div class="inputs">
-                <label for="prixproduit">Prix du Produit</label>
-                <input type="text" id="prixproduit" name="prixproduit">
-                <span id="prixproduitErreur"></span>
-            </div>
-            <div class="inputs">
-                <label for="quantiteproduit">Quantité du Produit</label>
-                <input type="text" id="quantiteproduit" name="quantiteproduit">
-                <span id="quantiteproduitErreur"></span>
-            </div>
-            <button type="submit">Enregistrer</button>
-        </form>
-    </fieldset>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-</body>
+
+</html>
+

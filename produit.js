@@ -1,9 +1,10 @@
 
 
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
+// Configuration Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCQGsCrIRQUumN2OPoY6EbX2CtI1HToHW8",
     authDomain: "gestion-de-depenses-f22f2.firebaseapp.com",
@@ -15,147 +16,143 @@ const firebaseConfig = {
     databaseURL: "https://gestion-de-depenses-f22f2-default-rtdb.firebaseio.com/",
 };
 
-// Initialize Firebase
+// Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
 
 document.addEventListener('DOMContentLoaded', () => {
-
     const menuBurger = document.getElementById("menu-burger");
-    const navLinks = document.getElementById("nav-links");
-  
-    menuBurger.addEventListener("click", function() {
-      navLinks.classList.toggle("active");
-      menuBurger.classList.toggle("active");
-    });
+  const navLinks = document.getElementById("nav-links");
+
+  menuBurger.addEventListener("click", function() {
+    navLinks.classList.toggle("active");
+    menuBurger.classList.toggle("active");
+  });
     const produitform = document.getElementById('produitformulaire');
     const dateproduitInput = document.getElementById('dateproduit');
-    let selectedDate = null;
+    const produitsList = document.getElementById('produitsList');
+    const logoutButton = document.querySelector('button'); // Assurez-vous que le bouton de déconnexion est le bon
 
-    dateproduitInput.addEventListener('change', (e) => {
-        selectedDate = e.target.value;
-        afficherProduitsParDate(selectedDate);
-    });
+    // Vérifier l'état de l'authentification
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
 
-    produitform.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let valid = true;
-        const nomregex = /^[a-zA-Z\s]+$/;
-        const quantiteregex = /^[a-zA-Z0-9\s]+$/;
+            // Gestion de l'événement de soumission du formulaire
+            produitform.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let valid = true;
+                const nomregex = /^[a-zA-Z\s]+$/;
+                const quantiteregex = /^[a-zA-Z0-9\s]+$/;
 
-        const nomproduit = document.getElementById('nomproduit').value.trim();
-        const prixproduit = document.getElementById('prixproduit').value.trim();
-        const quantiteproduit = document.getElementById('quantiteproduit').value.trim();
+                const nomproduit = document.getElementById('nomproduit').value.trim();
+                const prixproduit = document.getElementById('prixproduit').value.trim();
+                const quantiteproduit = document.getElementById('quantiteproduit').value.trim();
+                const selectedDate = dateproduitInput.value;
 
-        if (nomproduit === "") {
-            const nomproduitErreur = document.getElementById('nomproduitErreur');
-            nomproduitErreur.innerHTML = "Le nom du produit ne doit pas être vide";
-            nomproduitErreur.style.color = 'red';
-            valid = false;
-        } else if (!nomregex.test(nomproduit)) {
-            const nomproduitErreur = document.getElementById('nomproduitErreur');
-            nomproduitErreur.innerHTML = "Le nom ne doit pas contenir de caractère spécial ni de chiffre";
-            nomproduitErreur.style.color = 'red';
-            valid = false;
-        }
+                // Validation des champs
+                if (nomproduit === "") {
+                    document.getElementById('nomproduitErreur').textContent = "Le nom du produit ne doit pas être vide";
+                    valid = false;
+                } else if (!nomregex.test(nomproduit)) {
+                    document.getElementById('nomproduitErreur').textContent = "Le nom ne doit pas contenir de caractère spécial ni de chiffre";
+                    valid = false;
+                }
 
-        if (prixproduit === "") {
-            const prixproduitErreur = document.getElementById('prixproduitErreur');
-            prixproduitErreur.innerHTML = "Le prix ne doit pas être vide";
-            prixproduitErreur.style.color = 'red';
-            valid = false;
-        }
+                if (prixproduit === "") {
+                    document.getElementById('prixproduitErreur').textContent = "Le prix ne doit pas être vide";
+                    valid = false;
+                }
 
-        if (quantiteproduit === "") {
-            const quantiteproduitErreur = document.getElementById('quantiteproduitErreur');
-            quantiteproduitErreur.innerHTML = "La quantité ne doit pas être vide";
-            quantiteproduitErreur.style.color = 'red';
-            valid = false;
-        } else if (!quantiteregex.test(quantiteproduit)) {
-            const quantiteproduitErreur = document.getElementById('quantiteproduitErreur');
-            quantiteproduitErreur.innerHTML = "La quantité ne doit pas contenir de caractère spécial";
-            quantiteproduitErreur.style.color = 'red';
-            valid = false;
-        }
+                if (quantiteproduit === "") {
+                    document.getElementById('quantiteproduitErreur').textContent = "La quantité ne doit pas être vide";
+                    valid = false;
+                } else if (!quantiteregex.test(quantiteproduit)) {
+                    document.getElementById('quantiteproduitErreur').textContent = "La quantité ne doit pas contenir de caractère spécial";
+                    valid = false;
+                }
 
-        if (!selectedDate) {
-            const dateproduitErreur = document.getElementById('dateproduitErreur');
-            dateproduitErreur.innerHTML = "La date ne doit pas être vide";
-            dateproduitErreur.style.color = 'red';
-            valid = false;
-        }
+                if (!selectedDate) {
+                    document.getElementById('dateproduitErreur').textContent = "La date ne doit pas être vide";
+                    valid = false;
+                }
 
-        if (!valid) {
-            return; // Arrêter le traitement si les données ne sont pas valides
-        }
+                if (!valid) {
+                    return; // Arrêter le traitement si les données ne sont pas valides
+                }
 
-        const newproduitRef = ref(db, 'Produits/' + Date.now());
-        set(newproduitRef, {
-            nom: nomproduit,
-            prix: prixproduit,
-            quantite: quantiteproduit,
-            date: selectedDate
-        })
-            .then(() => {
-                Swal.fire({
-                    title: "Produit ajouté avec succès!",
-                    icon: 'success',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInUp animate__faster'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutDown animate__faster'
-                    }
-                });
-
-                // Réinitialiser le formulaire
-                produitform.reset();
-                afficherProduitsParDate(selectedDate);
-            })
-            .catch((error) => {
-                console.error('Erreur lors de l\'ajout du produit:', error);
-                alert('Erreur lors de l\'ajout du produit.');
+                // Ajouter le produit à Firebase
+                const newproduitRef = ref(db, 'Produits/' + uid + '/' + Date.now());
+                set(newproduitRef, {
+                    nom: nomproduit,
+                    prix: prixproduit,
+                    quantite: quantiteproduit,
+                    date: selectedDate,
+                    utilisateur: uid
+                })
+                    .then(() => {
+                        Swal.fire({
+                            title: "Produit ajouté avec succès!",
+                            icon: 'success'
+                        });
+                        produitform.reset();
+                        afficherProduitsParDate(selectedDate, uid);
+                    })
+                    .catch((error) => {
+                        console.error('Erreur lors de l\'ajout du produit:', error);
+                        Swal.fire({
+                            title: "Erreur lors de l'ajout du produit.",
+                            icon: 'error'
+                        });
+                    });
             });
-    });
 
-    function afficherProduitsParDate(date) {
-        const produitsList = document.getElementById('produitsList');
-        produitsList.innerHTML = ''; // Effacer la liste existante
-
-        const produitsRef = ref(db, 'Produits');
-        get(child(produitsRef, '/')).then((snapshot) => {
-            if (snapshot.exists()) {
-                const produits = snapshot.val();
-                Object.keys(produits).forEach(key => {
-                    const produit = produits[key];
-                    if (produit.date === date) {
-                        const produitElement = document.createElement('div');
-                        produitElement.innerHTML = `
-                            <h3>${produit.nom}</h3>
-                            <p>Prix: ${produit.prix}</p>
-                            <p>Quantité: ${produit.quantite}</p>
-                            <p>Date: ${produit.date}</p>
-                        `;
-                        produitsList.appendChild(produitElement);
+            // Fonction pour afficher les produits par date
+            function afficherProduitsParDate(date, uid) {
+                produitsList.innerHTML = '';
+                const produitsRef = ref(db, 'Produits/' + uid);
+                get(child(produitsRef, '/')).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const produits = snapshot.val();
+                        Object.keys(produits).forEach(key => {
+                            const produit = produits[key];
+                            if (produit.date === date) {
+                                const produitElement = document.createElement('div');
+                                produitElement.innerHTML = `
+                                    <h3>${produit.nom}</h3>
+                                    <p>Prix: ${produit.prix}</p>
+                                    <p>Quantité: ${produit.quantite}</p>
+                                    <p>Date: ${produit.date}</p>
+                                `;
+                                produitsList.appendChild(produitElement);
+                            }
+                        });
+                    } else {
+                        produitsList.innerHTML = 'Aucun produit trouvé pour cette date.';
                     }
+                }).catch((error) => {
+                    console.error('Erreur lors de la récupération des produits:', error);
                 });
-            } else {
-                console.log('Aucun produit trouvé pour cette date.');
             }
-        }).catch((error) => {
-            console.error('Erreur lors de la récupération des produits:', error);
-        });
-    }
+
+            // Afficher les produits par date initiale (s'il y a une date sélectionnée)
+            if (dateproduitInput.value) {
+                afficherProduitsParDate(dateproduitInput.value, uid);
+            }
+
+            // Déconnexion de l'utilisateur
+            logoutButton.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    window.location.href = 'inscription.html'; // Rediriger vers la page d'inscription après déconnexion
+                }).catch((error) => {
+                    console.error('Erreur lors de la déconnexion:', error);
+                });
+            });
+
+        } else {
+            window.location.href = 'inscription.html'; // Rediriger si non authentifié
+        }
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
 
