@@ -144,14 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Déconnexion de l'utilisateur
             logoutButton.addEventListener('click', () => {
                 signOut(auth).then(() => {
-                    window.location.href = 'inscription.html'; // Rediriger vers la page d'inscription après déconnexion
+                    window.location.href = 'index.html'; // Rediriger vers la page d'inscription après déconnexion
                 }).catch((error) => {
                     console.error('Erreur lors de la déconnexion:', error);
                 });
             });
 
         } else {
-            window.location.href = 'inscription.html'; // Rediriger si non authentifié
+            window.location.href = 'index.html'; // Rediriger si non authentifié
         }
     });
 });

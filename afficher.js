@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('container');
     const loginDiv = document.getElementById('login');
     alert('Déconnexion réussie');
-    window.location.href = 'inscription.html'; 
+    window.location.href = 'index.html'; 
 
     container.style.display = 'none';
     loginDiv.style.display = 'block';
